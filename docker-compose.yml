@@ -6,7 +6,7 @@ services:
     environment:
       - HEAP_NEWSIZE=128M
       - MAX_HEAP_SIZE=512M
-      - CASSANDRA_CLUSTER_NAME=ece473-prj03
+      - CASSANDRA_CLUSTER_NAME=ece573-prj03
       - CASSANDRA_SEEDS=db1,db2,db3
   db2:
     extends: db1
