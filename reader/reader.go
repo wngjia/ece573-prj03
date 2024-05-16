@@ -50,14 +50,14 @@ func main() {
 
 	for lastSeq, rows := 0, 0; ; {
 		scanner := session.Query(
-			`SELECT seq FROM ece473.prj03 WHERE topic = ? AND seq > ?`,
+			`SELECT seq FROM ece573.prj03 WHERE topic = ? AND seq > ?`,
 			topic, lastSeq).
 			Iter().Scanner()
 		seq := lastSeq
 		for scanner.Next() {
 			err := scanner.Scan(&seq)
 			if err != nil {
-				log.Fatalf("Cannot read after %d from table ece473.prj03: %v", lastSeq, err)
+				log.Fatalf("Cannot read after %d from table ece573.prj03: %v", lastSeq, err)
 			}
 			rows++
 		}
