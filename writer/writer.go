@@ -49,30 +49,30 @@ func main() {
 	log.Printf("Connected to cluster %s", clusterName)
 
 	if err := session.Query(
-		`CREATE KEYSPACE IF NOT EXISTS ece473
+		`CREATE KEYSPACE IF NOT EXISTS ece573
 			WITH replication = {
 				'class':'SimpleStrategy',
 				'replication_factor':3}`).
 		Exec(); err != nil {
-		log.Fatalf("Cannot create keyspace ece473: %v", err)
+		log.Fatalf("Cannot create keyspace ece573: %v", err)
 	}
 
 	if err := session.Query(
-		`CREATE TABLE IF NOT EXISTS ece473.prj03 (
+		`CREATE TABLE IF NOT EXISTS ece573.prj03 (
 			topic text, seq int, value double,
 			PRIMARY KEY (topic, seq))`).
 		Exec(); err != nil {
-		log.Fatalf("Cannot create table ece473.prj03: %v", err)
+		log.Fatalf("Cannot create table ece573.prj03: %v", err)
 	}
 
 	for seq := 1; ; seq++ {
 		value := rand.Float64()
 		err := session.Query(
-			`INSERT INTO ece473.prj03 (topic, seq, value) VALUES (?, ?, ?)`,
+			`INSERT INTO ece573.prj03 (topic, seq, value) VALUES (?, ?, ?)`,
 			topic, seq, value).
 			Exec()
 		if err != nil {
-			log.Fatalf("Cannot write %d to table ece473.prj03: %v", seq, err)
+			log.Fatalf("Cannot write %d to table ece573.prj03: %v", seq, err)
 		}
 		if seq%1000 == 0 {
 			log.Printf("%s: inserted %d rows", topic, seq)
